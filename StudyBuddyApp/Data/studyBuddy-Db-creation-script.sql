@@ -1,4 +1,4 @@
---create database TestStudyBuddyDB;
+create database StudyBuddyDB;
 
 create table QuestionAndAnswerDetail (
     QAId int NOT NULL PRIMARY KEY,

@@ -30,6 +30,7 @@ namespace StudyBuddyApp.Controllers
             {
                 return NotFound();
             }
+
             return await _context.QuestionAndAnswerDetails.ToListAsync();
         }
 
