@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KRDNSVooIUu9hlboTRd+lVs0RNqpt+VTFqDacQ1JIFdsCy6J5Ysv9F+GIw455pps0xmNuNykONF9W9hwI8qptA==",
+  "dgSpecHash": "42nE6YjqwaWoqoz0FqCT5YL0cugondoNUN10iKc++27gtdmRVaixH7K1sqLXDJPD5w5D9Nii9WSNT9TqYF3ZJg==",
   "success": true,
-  "projectFilePath": "C:\\GCAH\\StudyBuddyApp\\StudyBuddyBackEnd\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\StudyBuddyApp.csproj",
+  "projectFilePath": "C:\\GCAH\\StudyBuddy\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\StudyBuddyApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Home\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Home\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

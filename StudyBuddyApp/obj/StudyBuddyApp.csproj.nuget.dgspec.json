@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GCAH\\StudyBuddyApp\\StudyBuddyBackEnd\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\StudyBuddyApp.csproj": {}
+    "C:\\GCAH\\StudyBuddy\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\StudyBuddyApp.csproj": {}
   },
   "projects": {
-    "C:\\GCAH\\StudyBuddyApp\\StudyBuddyBackEnd\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\StudyBuddyApp.csproj": {
+    "C:\\GCAH\\StudyBuddy\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\StudyBuddyApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GCAH\\StudyBuddyApp\\StudyBuddyBackEnd\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\StudyBuddyApp.csproj",
+        "projectUniqueName": "C:\\GCAH\\StudyBuddy\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\StudyBuddyApp.csproj",
         "projectName": "StudyBuddyApp",
-        "projectPath": "C:\\GCAH\\StudyBuddyApp\\StudyBuddyBackEnd\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\StudyBuddyApp.csproj",
+        "projectPath": "C:\\GCAH\\StudyBuddy\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\StudyBuddyApp.csproj",
         "packagesPath": "C:\\Users\\Home\\.nuget\\packages\\",
-        "outputPath": "C:\\GCAH\\StudyBuddyApp\\StudyBuddyBackEnd\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\obj\\",
+        "outputPath": "C:\\GCAH\\StudyBuddy\\BackEndBootCamptStudyBuddy\\StudyBuddyApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Home\\AppData\\Roaming\\NuGet\\NuGet.Config",
