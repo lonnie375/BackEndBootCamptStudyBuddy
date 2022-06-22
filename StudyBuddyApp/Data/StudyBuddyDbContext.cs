@@ -39,7 +39,8 @@ namespace StudyBuddyApp.Data
                 entity.ToTable("FavoriteQA");
 
                 entity.Property(e => e.FavoriteQaid)
-                    .ValueGeneratedNever()
+                    //.ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()  // Run this is SSMS:   -- set identity_insert FavoriteQA on;
                     .HasColumnName("FavoriteQAId");
 
                 entity.Property(e => e.Qaid).HasColumnName("QAId");
