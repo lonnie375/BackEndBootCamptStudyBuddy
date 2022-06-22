@@ -26,7 +26,7 @@ namespace StudyBuddyApp.Controllers
             return await _context.QuestionAndAnswerDetails.ToListAsync();
         }
 
-        //GET: QuestionAndAnswerDetails
+        //GET: QuestionAndAnswerDetailsById
         public async Task<ActionResult<QuestionAndAnswerDetail>> QuestionAndAnswerDetailByQAId(int id)
         {
             if (id == null || _context.QuestionAndAnswerDetails == null)
@@ -92,6 +92,25 @@ namespace StudyBuddyApp.Controllers
             //TODO: consider finding a way to return the updated favorites list.
             //TODO: maybe add try-catch
             //TODO: how can we refactor this method to handle adding a QA to favorites list (would need to change name to something like updateFavoritesList)
+        }
+
+        //POST: AddToFavoriteList
+        [HttpPost(" /{userId},{qaId}")]
+        public async Task<ActionResult<IEnumerable<FavoriteQa>>> AddToFavoriteList(int userId, int qaId)
+        {
+            //var newFavQa = _context.QuestionAndAnswerDetails.FirstOrDefault(qa => qa.Qaid == qaId);
+
+            var newFavQa = new FavoriteQa()
+            {
+                UserId = userId,
+                Qaid = qaId,
+                IsActive = true
+            };
+
+            _context.FavoriteQAs.Add(newFavQa);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
 
         // GET: QuestionAndAnswerDetails/Create
