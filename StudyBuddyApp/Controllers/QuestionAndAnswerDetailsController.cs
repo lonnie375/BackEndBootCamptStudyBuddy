@@ -25,51 +25,36 @@ namespace StudyBuddyApp.Controllers
             }
             return await _context.QuestionAndAnswerDetails.ToListAsync();
         }
-
-        //GET: QuestionAndAnswerDetails
-        public async Task<ActionResult<QuestionAndAnswerDetail>> QuestionAndAnswerDetailByQAId(int id)
+        // GET: QuestionAndAnswerDetails/Details/5
+        [HttpGet("GetQuestionById")]
+        public IActionResult GetAnswer(int id)
         {
-            if (id == null || _context.QuestionAndAnswerDetails == null)
+            QuestionAndAnswerDetail answer = _context.QuestionAndAnswerDetails.FirstOrDefault(x => x.Qaid == id);
+            if (answer == null)
             {
                 return NotFound();
             }
-
-            var questionAndAnswerDetail = await _context.QuestionAndAnswerDetails.FirstOrDefaultAsync(m => m.Qaid == id);
-            if (questionAndAnswerDetail == null)
-            {
-                return NotFound();
-            }
-
-            return questionAndAnswerDetail;
+            return Ok(answer);
         }
 
-        //GET: GetListFavoriteQAByUserId
-        [HttpGet("GetListFavoriteQaByUserId/{userId}")]
-        public async Task<ActionResult<IEnumerable<QuestionAndAnswerDetail>>> GetListFavoriteQaByUserId(int userId)
+        // POST: QuestionAndAnswerDetails/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost("PostFavoriteQuestion")]
+        public async Task<IActionResult> AddingFavorite(FavoriteQa favorite)
         {
-            var resultList = new List<QuestionAndAnswerDetail>();
-
-            if (userId == null || _context.FavoriteQAs == null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                _context.Add(favorite);
+                await _context.SaveChangesAsync();
+
+                return Ok(favorite);
+            }
+            else
+            {
+                return BadRequest();
             }
 
-            var favQaIdList = _context.FavoriteQAs.Where(fav => fav.UserId == userId && fav.IsActive == true).Select(qa => qa.Qaid);
-
-            if (favQaIdList == null)
-            {
-                return NotFound();
-            }
-
-            foreach (var qa in _context.QuestionAndAnswerDetails)
-            {
-                if (favQaIdList.Contains(qa.Qaid))
-                {
-                    resultList.Add(qa);
-                }
-            }
-
-            return resultList;
         }
 
         //PUT: DeleteQaFromFavoriteList
