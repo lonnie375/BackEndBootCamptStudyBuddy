@@ -54,7 +54,7 @@ namespace StudyBuddyApp.Data
                 entity.ToTable("QuestionAndAnswerDetail");
 
                 entity.Property(e => e.Qaid)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("QAId");
 
                 entity.Property(e => e.Answer).IsUnicode(false);
