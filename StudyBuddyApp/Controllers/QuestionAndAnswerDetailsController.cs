@@ -6,7 +6,10 @@ using StudyBuddyApp.Models;
 
 namespace StudyBuddyApp.Controllers
 {
-    public class QuestionAndAnswerDetailsController : Controller
+    // Why do these attributes throw an error.  Are they even needed?
+    //[Route("api/[controller]")]
+    //[ApiController]
+    public class QuestionAndAnswerDetailsController : ControllerBase
     {
         private readonly StudyBuddyDbContext _context;
 
@@ -27,6 +30,7 @@ namespace StudyBuddyApp.Controllers
         }
 
         //GET: QuestionAndAnswerDetailsById
+        [HttpGet("QuestionAndAnswerDetailsById/{qaId}")]
         public async Task<ActionResult<QuestionAndAnswerDetail>> QuestionAndAnswerDetailByQAId(int id)
         {
             if (id == null || _context.QuestionAndAnswerDetails == null)
@@ -95,9 +99,12 @@ namespace StudyBuddyApp.Controllers
         }
 
         //POST: AddToFavoriteList
-        [HttpPost(" /{userId},{qaId}")]
+        [HttpPost("AddToFavoriteList/{userId},{qaId}")]
         public async Task<ActionResult<IEnumerable<FavoriteQa>>> AddToFavoriteList(int userId, int qaId)
         {
+            // What is an API?
+            // An API (Application Programming Interface) is a software that allows two applications to communicate with each other.
+
             var newFavQa = new FavoriteQa()
             {
                 UserId = userId,
@@ -111,26 +118,29 @@ namespace StudyBuddyApp.Controllers
             return Ok();
         }
 
+
+
+        //POST: QuestionAndAnswerDetails/Create
+        [HttpPost("CreateNewQA")] // For some reason populats DB with {value}, so route params were removed for now
+        public async Task<IActionResult> CreateNewQA(string category, string question, string answer)
+        {
+            var newQA = new QuestionAndAnswerDetail()
+            {
+                Qacategory = category,
+                Question = question,
+                Answer = answer
+            };
+
+            _context.Add(newQA);
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
         // GET: QuestionAndAnswerDetails/Create
         //public IActionResult Create()
         //{
         //    return View();
-        //}
-
-        // POST: QuestionAndAnswerDetails/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Qaid,Qacategory,Question,Answer")] QuestionAndAnswerDetail questionAndAnswerDetail)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(questionAndAnswerDetail);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(questionAndAnswerDetail);
         //}
 
         // GET: QuestionAndAnswerDetails/Edit/5
@@ -202,7 +212,7 @@ namespace StudyBuddyApp.Controllers
         //    return View(questionAndAnswerDetail);
         //}
 
-        // Maybe consider a soft-delete where the IsActive property is set to false
+        // Maybe consider a soft-delete where the IsActive property is set to false (except isActive columne not included in DB creation script)
         // POST: QuestionAndAnswerDetails/Delete/5
         //[HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
