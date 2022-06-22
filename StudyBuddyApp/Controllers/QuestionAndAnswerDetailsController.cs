@@ -98,8 +98,6 @@ namespace StudyBuddyApp.Controllers
         [HttpPost(" /{userId},{qaId}")]
         public async Task<ActionResult<IEnumerable<FavoriteQa>>> AddToFavoriteList(int userId, int qaId)
         {
-            //var newFavQa = _context.QuestionAndAnswerDetails.FirstOrDefault(qa => qa.Qaid == qaId);
-
             var newFavQa = new FavoriteQa()
             {
                 UserId = userId,
