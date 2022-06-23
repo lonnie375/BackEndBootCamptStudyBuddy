@@ -34,7 +34,7 @@ namespace StudyBuddyApp.Controllers
         [HttpGet("GetQuestionById")]
         public IActionResult GetAnswer(int id)
         {
-            QuestionAndAnswerDetail answer = _context.QuestionAndAnswerDetails.FirstOrDefault(x => x.Qaid == id);
+            QuestionAndAnswerDetail answer = _context.QuestionAndAnswerDetails.FirstOrDefault(x => x.QAId == id);
             if (answer == null)
             {
                 return NotFound();
@@ -62,11 +62,32 @@ namespace StudyBuddyApp.Controllers
 
         }
 
+
+        //POST: AddToFavoriteList
+        [HttpPost("AddToFavoriteList/{userId},{qaId}")]
+        public async Task<ActionResult<IEnumerable<FavoriteQa>>> AddToFavoriteList(int userId, int qaId)
+        {
+            // What is an API?
+            // An API (Application Programming Interface) is a software that allows two applications to communicate with each other.
+
+            var newFavQa = new FavoriteQa()
+            {
+                UserId = userId,
+                QAId = qaId,
+                IsActive = true
+            };
+
+            _context.FavoriteQAs.Add(newFavQa);
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
         //PUT: DeleteQaFromFavoriteList
         [HttpPut("DeleteQaFromFavoriteList/{userId},{qaId}")]
         public async Task<ActionResult<IEnumerable<FavoriteQa>>> DeleteQaFromFavoriteList(int userId, int qaId)
         {
-            var target = _context.FavoriteQAs.FirstOrDefault(fav => fav.UserId == userId && fav.Qaid == qaId);
+            var target = _context.FavoriteQAs.FirstOrDefault(fav => fav.UserId == userId && fav.QAId == qaId);
 
             if (target == null)
             {
@@ -84,25 +105,6 @@ namespace StudyBuddyApp.Controllers
             //TODO: how can we refactor this method to handle adding a QA to favorites list (would need to change name to something like updateFavoritesList)
         }
 
-        //POST: AddToFavoriteList
-        [HttpPost("AddToFavoriteList/{userId},{qaId}")]
-        public async Task<ActionResult<IEnumerable<FavoriteQa>>> AddToFavoriteList(int userId, int qaId)
-        {
-            // What is an API?
-            // An API (Application Programming Interface) is a software that allows two applications to communicate with each other.
-
-            var newFavQa = new FavoriteQa()
-            {
-                UserId = userId,
-                Qaid = qaId,
-                IsActive = true
-            };
-
-            _context.FavoriteQAs.Add(newFavQa);
-            await _context.SaveChangesAsync();
-
-            return Ok();
-        }
 
 
 
@@ -150,9 +152,9 @@ namespace StudyBuddyApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Qaid,Qacategory,Question,Answer")] QuestionAndAnswerDetail questionAndAnswerDetail)
+        //public async Task<IActionResult> Edit(int id, [Bind("QAId,Qacategory,Question,Answer")] QuestionAndAnswerDetail questionAndAnswerDetail)
         //{
-        //    if (id != questionAndAnswerDetail.Qaid)
+        //    if (id != questionAndAnswerDetail.QAId)
         //    {
         //        return NotFound();
         //    }
@@ -166,7 +168,7 @@ namespace StudyBuddyApp.Controllers
         //        }
         //        catch (DbUpdateConcurrencyException)
         //        {
-        //            if (!QuestionAndAnswerDetailExists(questionAndAnswerDetail.Qaid))
+        //            if (!QuestionAndAnswerDetailExists(questionAndAnswerDetail.QAId))
         //            {
         //                return NotFound();
         //            }
@@ -189,7 +191,7 @@ namespace StudyBuddyApp.Controllers
         //    }
 
         //    var questionAndAnswerDetail = await _context.QuestionAndAnswerDetails
-        //        .FirstOrDefaultAsync(m => m.Qaid == id);
+        //        .FirstOrDefaultAsync(m => m.QAId == id);
         //    if (questionAndAnswerDetail == null)
         //    {
         //        return NotFound();
@@ -220,7 +222,7 @@ namespace StudyBuddyApp.Controllers
 
         //private bool QuestionAndAnswerDetailExists(int id)
         //{
-        //  return (_context.QuestionAndAnswerDetails?.Any(e => e.Qaid == id)).GetValueOrDefault();
+        //  return (_context.QuestionAndAnswerDetails?.Any(e => e.QAId == id)).GetValueOrDefault();
         //}
     }
 }

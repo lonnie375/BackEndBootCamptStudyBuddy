@@ -37,23 +37,26 @@ namespace StudyBuddyApp.Data
             modelBuilder.Entity<FavoriteQa>(entity =>
             {
                 entity.ToTable("FavoriteQA");
-
-                entity.Property(e => e.FavoriteQaid)
+                /*
+                entity.Property(e => e.FavoriteQAId)
                     //.ValueGeneratedNever()
                     .ValueGeneratedOnAdd()  // Run this is SSMS:   -- set identity_insert FavoriteQA on;
                     .HasColumnName("FavoriteQAId");
+                */
 
-                entity.Property(e => e.Qaid).HasColumnName("QAId");
+
+                entity.HasKey(e => e.FavoriteQAId).HasName("PK__Favorite__81667B5D517E165D");
+                entity.Property(e => e.QAId).HasColumnName("QAId");
             });
 
             modelBuilder.Entity<QuestionAndAnswerDetail>(entity =>
             {
-                entity.HasKey(e => e.Qaid)
+                entity.HasKey(e => e.QAId)
                     .HasName("PK__Question__DFA593A0A502D345");
 
                 entity.ToTable("QuestionAndAnswerDetail");
 
-                entity.Property(e => e.Qaid)
+                entity.Property(e => e.QAId)
                     .ValueGeneratedOnAdd()
                     .HasColumnName("QAId");
 

@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace StudyBuddyApp.Models
 {
     public partial class FavoriteQa
     {
-        public int FavoriteQaid { get; set; }
+        [Key]
+        public int FavoriteQAId { get; set; }
         public int UserId { get; set; }
-        public int Qaid { get; set; }
+        public int QAId { get; set; }
         public bool IsActive { get; set; }
     }
 }
